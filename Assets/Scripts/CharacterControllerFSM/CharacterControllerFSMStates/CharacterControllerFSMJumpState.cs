@@ -33,7 +33,7 @@ namespace Demo.CharacterControllerFSM.CharacterControllerFSMStates
 
 
 
-        #region Methods
+        #region Methods for ICharacterControllerFSMState
 
         public override void UpdateState()
         {
@@ -55,6 +55,49 @@ namespace Demo.CharacterControllerFSM.CharacterControllerFSMStates
             }
         }
 
+        public override void EnterState()
+        {   
+            base.EnterState();
+            
+            // the square root of H * -2 * G = how much velocity needed to reach desired height
+            _context.VerticalVelocity = Mathf.Sqrt(_context.JumpHeight * -2f * _context.Gravity);
+                   
+            _context.MyAnimator.SetBool(_context.AnimIDJump, true);
+            
+            // reset the jump timeout timer
+            _context.JumpTimeoutDelta = _context.JumpTimeout;
+
+            _context.Input.jump = false;
+        }
+
+        public override void ExitState()
+        {
+            base.ExitState();
+            
+            // reset the fall timeout timer
+            _context.FallTimeoutDelta = _context.FallTimeout;
+
+            _context.MyAnimator.SetBool(_context.AnimIDJump, false);
+            _context.MyAnimator.SetBool(_context.AnimIDFreeFall, false);
+            
+            // stop our velocity dropping infinitely when grounded
+            if (_context.VerticalVelocity < 0.0f)
+            {
+                _context.VerticalVelocity = -2f;
+            }
+        }
+
+        #endregion
+        
+        
+        
+        #region Methods for ICharacterControllerFSMState
+
+        public override void Move()
+        {
+            _context.Move();
+        }
+        
         public override void HandleJumpAndGravity()
         {
             // fall timeout
@@ -75,43 +118,7 @@ namespace Demo.CharacterControllerFSM.CharacterControllerFSMStates
             }
         }
 
-        public override void Move()
-        {
-            _context.Move();
-        }
-        
-        public override void EnterState()
-        {   
-            Debug.Log("Enter Jump");
-            
-            // the square root of H * -2 * G = how much velocity needed to reach desired height
-            _context.VerticalVelocity = Mathf.Sqrt(_context.JumpHeight * -2f * _context.Gravity);
-                   
-            _context.MyAnimator.SetBool(_context.AnimIDJump, true);
-            
-            // reset the jump timeout timer
-            _context.JumpTimeoutDelta = _context.JumpTimeout;
-
-            _context.Input.jump = false;
-        }
-
-        public override void ExitState()
-        {
-            Debug.Log("Exit Jump");
-            
-            // reset the fall timeout timer
-            _context.FallTimeoutDelta = _context.FallTimeout;
-
-            _context.MyAnimator.SetBool(_context.AnimIDJump, false);
-            _context.MyAnimator.SetBool(_context.AnimIDFreeFall, false);
-            
-            // stop our velocity dropping infinitely when grounded
-            if (_context.VerticalVelocity < 0.0f)
-            {
-                _context.VerticalVelocity = -2f;
-            }
-        }
-
         #endregion
+        
     }
 }

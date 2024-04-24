@@ -47,6 +47,22 @@ namespace Demo.CharacterControllerFSM.CharacterControllerFSMStates
                 SwitchState(_stateFactory.GetState(CharacterControllerFSMStateType.JUMP));
             }
         }
+        
+        public override void EnterState()
+        {
+            base.EnterState();
+        }
+
+        public override void ExitState()
+        {
+            base.ExitState();
+        }
+
+        #endregion
+        
+        
+        
+        #region Methods for IMovingCharacter
 
         public override void HandleJumpAndGravity()
         {
@@ -75,16 +91,7 @@ namespace Demo.CharacterControllerFSM.CharacterControllerFSMStates
             _context.Move();
         }
         
-        public override void EnterState()
-        {
-            Debug.Log("Enter State Grounded");
-        }
-
-        public override void ExitState()
-        {
-            Debug.Log("Exit State Grounded");
-        }
-
         #endregion
+        
     }
 }

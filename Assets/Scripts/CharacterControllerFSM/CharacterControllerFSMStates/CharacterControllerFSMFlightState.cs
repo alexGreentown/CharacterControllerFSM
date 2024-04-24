@@ -27,7 +27,7 @@ namespace Demo.CharacterControllerFSM.CharacterControllerFSMStates
 
 
 
-        #region Methods
+        #region Methods for ICharacterControllerFSMState
 
         public override void UpdateState()
         {
@@ -44,26 +44,36 @@ namespace Demo.CharacterControllerFSM.CharacterControllerFSMStates
             }
         }
 
-        public override void HandleJumpAndGravity()
+        public override void EnterState()
         {
-            _context.VerticalVelocity = 5f;
+            base.EnterState();
+            
+            _context.MyAnimator.SetBool(_context.AnimIDFlying, true);
         }
 
+        public override void ExitState()
+        {
+            base.ExitState();
+            
+            _context.MyAnimator.SetBool(_context.AnimIDFlying, false);
+        }
+
+        #endregion
+        
+        
+        
+        #region Methods for IMovingCharacter
+        
         public override void Move()
         {
             _context.Move();
         }
 
-        public override void EnterState()
+        public override void HandleJumpAndGravity()
         {
-            Debug.Log("Enter Flight state");
+            _context.VerticalVelocity = 5f;
         }
-
-        public override void ExitState()
-        {
-            Debug.Log("Exit Flight state");
-        }
-
+        
         #endregion
     }
 }

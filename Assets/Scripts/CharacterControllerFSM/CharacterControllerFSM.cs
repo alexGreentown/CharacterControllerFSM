@@ -1,5 +1,4 @@
 using Demo.Helpers;
-using StarterAssets;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -9,6 +8,10 @@ namespace Demo.CharacterControllerFSM
     [RequireComponent(typeof(PlayerInput))]
     
     
+    /// <summary>
+    /// This is an implementation of Design Pattern Finite State Machine based on Unity Asset CharacterController
+    /// with some improved functionality
+    /// </summary>
     public class CharacterControllerFSM : CharacterControllerFSMBase
     {
         #region Fields ThirdPersonController
@@ -102,13 +105,14 @@ namespace Demo.CharacterControllerFSM
         private int _animIDGrounded;
         private int _animIDJump;
         private int _animIDFreeFall;
+        private int _animIDFlying;
         private int _animIDMotionSpeed;
 
         private PlayerInput _playerInput;
 
         public Animator Animator;
         private CharacterController _controller;
-        protected StarterAssetsInputs _input;
+        private StarterAssetsInputs _input;
         private GameObject _mainCamera;
 
         private const float _threshold = 0.01f;
@@ -174,6 +178,12 @@ namespace Demo.CharacterControllerFSM
         {
             get => _animIDFreeFall;
             set => _animIDFreeFall = value;
+        }
+        
+        public int AnimIDFlying
+        {
+            get => _animIDFlying;
+            set => _animIDFlying = value;
         }
 
         public float JumpTimeoutDelta
@@ -366,6 +376,7 @@ namespace Demo.CharacterControllerFSM
             _animIDGrounded = Animator.StringToHash("Grounded");
             _animIDJump = Animator.StringToHash("Jump");
             _animIDFreeFall = Animator.StringToHash("FreeFall");
+            _animIDFlying = Animator.StringToHash("Flying");
             AnimIDMotionSpeed = Animator.StringToHash("MotionSpeed");
         }
 

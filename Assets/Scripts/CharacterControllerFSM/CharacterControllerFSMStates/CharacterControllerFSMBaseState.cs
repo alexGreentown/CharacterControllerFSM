@@ -31,15 +31,22 @@ namespace Demo.CharacterControllerFSM.CharacterControllerFSMStates
         
 
         #region Methods for ICharacterControllerFSMState
-        
+
         public virtual void EnterState()
-        { }
-        
-        
-        public abstract void ExitState();
+        {
+            Debug.Log($"EnterState() {GetType().Name}");
+        }
+
+
+        public virtual void ExitState()
+        {
+            Debug.Log($"ExitState() {GetType().Name}");
+        }
 
         public virtual void SwitchState(CharacterControllerFSMBaseState newState)
         {
+            Debug.Log($"SwitchState() {GetType().Name}");
+            
             ExitState();
             newState.EnterState();
             
@@ -57,7 +64,6 @@ namespace Demo.CharacterControllerFSM.CharacterControllerFSMStates
         public abstract void HandleJumpAndGravity();
 
         public abstract void Move();
-
 
         #endregion
 
