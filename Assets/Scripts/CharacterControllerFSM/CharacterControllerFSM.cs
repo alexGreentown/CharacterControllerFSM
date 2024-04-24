@@ -6,9 +6,8 @@ using UnityEngine.InputSystem;
 namespace NKOA.CharacterControllerFSM
 {
     [RequireComponent(typeof(UnityEngine.CharacterController))]
-#if ENABLE_INPUT_SYSTEM 
     [RequireComponent(typeof(PlayerInput))]
-#endif
+    
     public class CharacterControllerFSM : CharacterControllerFSMBase
     {
         #region Fields ThirdPersonController
