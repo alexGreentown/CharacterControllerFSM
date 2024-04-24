@@ -5,8 +5,9 @@ using UnityEngine.InputSystem;
 
 namespace Demo.CharacterControllerFSM
 {
-    [RequireComponent(typeof(UnityEngine.CharacterController))]
+    [RequireComponent(typeof(CharacterController))]
     [RequireComponent(typeof(PlayerInput))]
+    
     
     public class CharacterControllerFSM : CharacterControllerFSMBase
     {
@@ -103,35 +104,23 @@ namespace Demo.CharacterControllerFSM
         private int _animIDFreeFall;
         private int _animIDMotionSpeed;
 
-#if ENABLE_INPUT_SYSTEM 
         private PlayerInput _playerInput;
-#endif 
+
         public Animator Animator;
-        private UnityEngine.CharacterController _controller;
+        private CharacterController _controller;
         protected StarterAssetsInputs _input;
         private GameObject _mainCamera;
 
         private const float _threshold = 0.01f;
 
         private bool _hasAnimator;
-        
         #endregion
         
         
         
         #region Properties
         
-        private bool IsCurrentDeviceMouse
-        {
-            get
-            {
-#if ENABLE_INPUT_SYSTEM
-                return _playerInput.currentControlScheme == "KeyboardMouse";
-#else
-				return false;
-#endif
-            }
-        }
+        private bool IsCurrentDeviceMouse => _playerInput.currentControlScheme == "KeyboardMouse";
         
         public StarterAssetsInputs Input
         {
@@ -385,8 +374,6 @@ namespace Demo.CharacterControllerFSM
             // set sphere position, with offset
             Vector3 spherePosition = new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z);
             Grounded = Physics.CheckSphere(spherePosition, GroundedRadius, GroundLayers, QueryTriggerInteraction.Ignore);
-
-//             Debug.Log($"Grounded {Grounded}");
 
             // update animator if using character
             Animator.SetBool(_animIDGrounded, Grounded);
