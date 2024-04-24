@@ -457,8 +457,6 @@ namespace Demo.CharacterControllerFSM
             }
         }
         
-        
-
         private void AnimationEventReceiver_OnFootstepEvent(AnimationEvent animationEvent)
         {
             if (animationEvent.animatorClipInfo.weight > 0.5f)
