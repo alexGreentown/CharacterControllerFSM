@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace NKOA.CharacterControllerFSM
+namespace Demo.CharacterControllerFSM
 {
 
     public interface IMovingCharacter

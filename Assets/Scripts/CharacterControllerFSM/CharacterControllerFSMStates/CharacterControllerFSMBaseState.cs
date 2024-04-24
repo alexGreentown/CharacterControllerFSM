@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace NKOA.CharacterControllerFSM.CharacterControllerFSMStates
+namespace Demo.CharacterControllerFSM.CharacterControllerFSMStates
 {
     public abstract class CharacterControllerFSMBaseState : ICharacterControllerFSMState, IMovingCharacter
     {

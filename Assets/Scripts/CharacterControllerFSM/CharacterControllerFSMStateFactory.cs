@@ -1,7 +1,7 @@
 using System.Collections.Specialized;
-using NKOA.CharacterControllerFSM.CharacterControllerFSMStates;
+using Demo.CharacterControllerFSM.CharacterControllerFSMStates;
 
-namespace NKOA.CharacterControllerFSM
+namespace Demo.CharacterControllerFSM
 {
     public enum CharacterControllerFSMStateType
     {

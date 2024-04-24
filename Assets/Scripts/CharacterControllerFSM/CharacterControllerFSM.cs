@@ -1,9 +1,9 @@
-using NKOA.Helpers;
+using Demo.Helpers;
 using StarterAssets;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace NKOA.CharacterControllerFSM
+namespace Demo.CharacterControllerFSM
 {
     [RequireComponent(typeof(UnityEngine.CharacterController))]
     [RequireComponent(typeof(PlayerInput))]

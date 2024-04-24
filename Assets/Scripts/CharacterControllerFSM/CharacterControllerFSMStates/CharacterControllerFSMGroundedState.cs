@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace NKOA.CharacterControllerFSM.CharacterControllerFSMStates
+namespace Demo.CharacterControllerFSM.CharacterControllerFSMStates
 {
     public class CharacterControllerFSMGroundedState : CharacterControllerFSMBaseState
     {

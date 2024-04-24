@@ -1,4 +1,4 @@
-﻿namespace NKOA.CharacterControllerFSM.CharacterControllerFSMStates
+﻿namespace Demo.CharacterControllerFSM.CharacterControllerFSMStates
 {
     public interface ICharacterControllerFSMState
     {

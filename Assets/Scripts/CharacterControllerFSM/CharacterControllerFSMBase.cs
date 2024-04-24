@@ -1,7 +1,7 @@
-using NKOA.CharacterControllerFSM.CharacterControllerFSMStates;
+using Demo.CharacterControllerFSM.CharacterControllerFSMStates;
 using UnityEngine;
 
-namespace NKOA.CharacterControllerFSM
+namespace Demo.CharacterControllerFSM
 {
     public abstract class CharacterControllerFSMBase : MonoBehaviour
     {
